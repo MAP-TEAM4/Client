@@ -11,7 +11,8 @@ import SnapKit
 
 class SearchViewController: UIViewController {
     
-    let sampleArr = ["노이로민정","마인트롤정","졸피뎀","멜록시캄","케토프로펜","올자핀정 2.5mg"]
+    let sampleArr = ["스포라녹스캡슐","마인트롤정","졸피뎀","멜록시캄","케토프로펜","올자핀정 2.5mg"]
+    let InfoViewController = MedicineInfoViewController()
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super .init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
@@ -29,6 +30,7 @@ class SearchViewController: UIViewController {
         
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "sampleCell")
         tableView.dataSource = self
+        tableView.delegate = self
         tableView.isHidden = true
         
         return tableView
@@ -65,6 +67,8 @@ extension SearchViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "sampleCell", for: indexPath)
         cell.textLabel?.text = sampleArr[indexPath.row]
+        cell.selectionStyle = .none
+        
         return cell
     }
     
@@ -72,8 +76,12 @@ extension SearchViewController: UITableViewDataSource {
 }
 
 extension SearchViewController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+       
+        let infoVC = self.InfoViewController
+        infoVC.nameLabel.text = sampleArr[indexPath.row]
         
+        self.navigationController?.pushViewController(infoVC, animated: true)
     }
 }
 

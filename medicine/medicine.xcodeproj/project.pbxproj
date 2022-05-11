@@ -13,6 +13,7 @@
 		FB83E6C6282BA46D00A09F3D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FB83E6C5282BA46D00A09F3D /* Assets.xcassets */; };
 		FB83E6C9282BA46D00A09F3D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FB83E6C7282BA46D00A09F3D /* LaunchScreen.storyboard */; };
 		FB83E6D2282BA73200A09F3D /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = FB83E6D1282BA73200A09F3D /* SnapKit */; };
+		FB83E6D4282BB4DE00A09F3D /* MedicineInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB83E6D3282BB4DE00A09F3D /* MedicineInfoViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,6 +24,7 @@
 		FB83E6C5282BA46D00A09F3D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FB83E6C8282BA46D00A09F3D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FB83E6CA282BA46D00A09F3D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FB83E6D3282BB4DE00A09F3D /* MedicineInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedicineInfoViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +61,7 @@
 				FB83E6BC282BA46A00A09F3D /* AppDelegate.swift */,
 				FB83E6BE282BA46A00A09F3D /* SceneDelegate.swift */,
 				FB83E6C0282BA46A00A09F3D /* SearchViewController.swift */,
+				FB83E6D3282BB4DE00A09F3D /* MedicineInfoViewController.swift */,
 				FB83E6C5282BA46D00A09F3D /* Assets.xcassets */,
 				FB83E6C7282BA46D00A09F3D /* LaunchScreen.storyboard */,
 				FB83E6CA282BA46D00A09F3D /* Info.plist */,
@@ -142,6 +145,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FB83E6D4282BB4DE00A09F3D /* MedicineInfoViewController.swift in Sources */,
 				FB83E6C1282BA46A00A09F3D /* SearchViewController.swift in Sources */,
 				FB83E6BD282BA46A00A09F3D /* AppDelegate.swift in Sources */,
 				FB83E6BF282BA46A00A09F3D /* SceneDelegate.swift in Sources */,
