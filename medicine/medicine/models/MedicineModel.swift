@@ -9,7 +9,7 @@ import Foundation
 
 struct MedicineModel: Decodable {
     let itemName: String
-    let entpyName: String
+    let entpName: String
     let medicImageUrl: String
     let className: String
 }

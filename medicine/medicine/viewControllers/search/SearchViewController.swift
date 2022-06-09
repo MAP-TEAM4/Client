@@ -10,20 +10,23 @@ import SnapKit
 import RxSwift
 import RxCocoa
 import Alamofire
+import Kingfisher
 
 class SearchViewController: UIViewController {
     let disposBag = DisposeBag()
     
+    let pregnantBool = true
+    let oldBool =  false
     
-    var mediArray : [[String:Any]] = []
-   
+    var mediArray = MedicineList.shared.medicineList
+    
+    
     let InfoViewController = MedicineInfoViewController()
-    
-    //let getRequest = PostService.TagService()
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super .init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
         
+        view.backgroundColor = .systemGray5
         setup()
         layout()
        
@@ -37,9 +40,13 @@ class SearchViewController: UIViewController {
     private lazy var TableView : UITableView = {
        let tableView = UITableView()
         
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "sampleCell")
+        tableView.register(MediCell.self, forCellReuseIdentifier: "sampleCell")
         tableView.dataSource = self
         tableView.delegate = self
+        tableView.layer.shadowColor = UIColor.black.cgColor
+        tableView.layer.shadowOpacity = 0.5
+        tableView.layer.shadowRadius = 10
+        tableView.backgroundColor = .systemBackground
   
         return tableView
     }()
@@ -66,21 +73,22 @@ class SearchViewController: UIViewController {
     }
     
     var searchQuery : String?
-    var items = [String]()
-    var samples = ["서울","부산","대구","대전"]
+    var items = [MedicineModel]()
+    
+   
     
     private func setup() {
        
         medicineSearchController.searchBar.rx.text.orEmpty
             .distinctUntilChanged()
-            .throttle(.milliseconds(500), scheduler: MainScheduler.instance)
+            .debounce(.milliseconds(500), scheduler: MainScheduler.instance)
             .subscribe(onNext: {t in
-                self.self.items = self.samples.filter{ $0.hasPrefix(t) }
+                self.items = self.mediArray.filter{ $0.itemName.hasSuffix(t) || $0.itemName.contains(t)}
                 self.TableView.reloadData()
-                
+
             })
             .disposed(by: disposBag)
-        
+
         
 //        func search(query: String?) {
 //            guard let query = query, !query.isEmpty else {return}
@@ -98,8 +106,8 @@ class SearchViewController: UIViewController {
 //
 //        }
     }
-    
  
+    
 }
 
 
@@ -108,15 +116,26 @@ class SearchViewController: UIViewController {
 extension SearchViewController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+       
         return items.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "sampleCell", for: indexPath)
-        cell.textLabel?.text = self.items
-        cell.selectionStyle = .none
+        let cell = tableView.dequeueReusableCell(withIdentifier: "sampleCell", for: indexPath) as!
+        MediCell
 
+        cell.nameLabel.text = self.items[indexPath.row].itemName
+        cell.setup()
+        cell.selectionStyle = .none
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        if indexPath.section == 0 {
+                return UITableView.automaticDimension
+            } else {
+                return 30
+            }
     }
 
 
@@ -126,7 +145,7 @@ extension SearchViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 
         let infoVC = self.InfoViewController
-//        infoVC.nameLabel.text = mediArray[indexPath.row].itemName
+        infoVC.nameLabel.text = self.items[indexPath.row].itemName
         
         self.navigationController?.pushViewController(infoVC, animated: true)
     }

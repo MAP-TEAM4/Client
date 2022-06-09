@@ -9,4 +9,7 @@ target 'medicine' do
   pod 'SnapKit', '~> 5.0.0'	
   pod 'Alamofire'
   pod 'Then'
+  pod 'RxSwift'
+  pod 'RxCocoa'
+  pod 'Kingfisher'
 end
