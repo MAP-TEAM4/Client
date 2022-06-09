@@ -12,16 +12,22 @@ import UserNotifications
 
 class NotiListViewController: UIViewController, ViewProtocol {
     private var combinationMedic: Set<String> = []
+    
     private var pregnancyMedic: [String] = []
+    
     private var oldmanMedic: [String] = []
     
     private var storedMedicines: [String] = []
     
+    private let titleLabel = UILabel().then {
+        $0.text = "나의 복용 약품"
+        $0.font = UIFont.systemFont(ofSize: 24, weight: .bold)
+    }
+    
     private let medicineTableView = UITableView()
     
     private let addMedicineButton = UIButton().then {
-        $0.backgroundColor = .systemBlue
-        $0.setTitle("복용 약품 추가", for: .normal)
+        $0.setTitle("알림 추가", for: .normal)
         $0.setCustom()
     }
     
@@ -37,7 +43,6 @@ class NotiListViewController: UIViewController, ViewProtocol {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         loadNotiTimes()
-        requestUserMedicineNoti()
     }
     
     // MARK: - Action Setting Method
@@ -55,11 +60,13 @@ class NotiListViewController: UIViewController, ViewProtocol {
             NotiMedicineCell.self,
             forCellReuseIdentifier: NotiMedicineCell.cellIdentifier
         )
+        self.navigationController?.navigationBar.tintColor = .systemPink
         self.navigationController?.navigationBar.topItem?.backButtonTitle = ""
     }
     
     internal func setUpView() {
         _ = [
+            titleLabel,
             addMedicineButton,
             medicineTableView
         ].map {
@@ -70,6 +77,11 @@ class NotiListViewController: UIViewController, ViewProtocol {
     internal func setConstraints() {
         let leftMargin: CGFloat = 20
         let rightMargin: CGFloat = -20
+        
+        titleLabel.snp.makeConstraints { make in
+            make.top.equalToSuperview().offset(100)
+            make.centerX.equalToSuperview()
+        }
 
         addMedicineButton.snp.makeConstraints { make in
             make.bottom.equalToSuperview().offset(-100)
@@ -79,7 +91,7 @@ class NotiListViewController: UIViewController, ViewProtocol {
         }
         
         medicineTableView.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(100)
+            make.top.equalTo(titleLabel).offset(100)
             make.leading.equalToSuperview().offset(leftMargin)
             make.trailing.equalToSuperview().offset(rightMargin)
             make.bottom.equalTo(addMedicineButton).offset(-100)
@@ -97,6 +109,7 @@ extension NotiListViewController {
             }
         }
         storedMedicines = keys
+        requestUserMedicineNoti()
         DispatchQueue.main.async {
             self.medicineTableView.reloadData()
         }
@@ -188,6 +201,8 @@ extension NotiListViewController: UITableViewDataSource, UITableViewDelegate {
         if (drugPrecautionsText == "") {
             drugPrecautionsText += "✓ 안심"
             cell.drugPrecautionLabel.textColor = .systemGreen
+        } else {
+            cell.drugPrecautionLabel.textColor = .systemGray
         }
         cell.drugPrecautionLabel.text = drugPrecautionsText
         

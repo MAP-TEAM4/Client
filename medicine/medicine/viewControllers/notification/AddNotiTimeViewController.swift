@@ -37,9 +37,8 @@ class AddNotiTimeViewController: UIViewController, ViewProtocol {
             .init(pointSize: 18, weight: .regular, scale: .large),
             forImageIn: .normal
         )
-        $0.tintColor = .systemGreen
         $0.setTitle("   시간 추가", for: .normal)
-        $0.setTitleColor(.systemBlue, for: .normal)
+        $0.tintColor = .systemGreen
         $0.contentHorizontalAlignment = .leading
     }
     
@@ -154,6 +153,7 @@ class AddNotiTimeViewController: UIViewController, ViewProtocol {
     // MARK: - View Protocol Methods
     internal func setUpValue() {
         nameLabel.text = "💊 \(medicineName)"
+        self.navigationController?.navigationBar.tintColor = .systemPink
         self.navigationController?.navigationBar.topItem?.backButtonTitle = ""
     }
     

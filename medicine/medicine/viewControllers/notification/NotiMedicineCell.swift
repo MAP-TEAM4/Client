@@ -23,7 +23,6 @@ class NotiMedicineCell: UITableViewCell, ViewProtocol {
     
     var drugPrecautionLabel = UILabel().then {
         $0.font = UIFont.systemFont(ofSize: 14)
-        $0.textColor = .systemGray
     }
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
