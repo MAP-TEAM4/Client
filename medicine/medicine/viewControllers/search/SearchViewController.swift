@@ -14,19 +14,15 @@ import Kingfisher
 
 class SearchViewController: UIViewController {
     let disposBag = DisposeBag()
-    
-    let pregnantBool = true
-    let oldBool =  false
+
     
     var mediArray = MedicineList.shared.medicineList
-    
-    
-    let InfoViewController = MedicineInfoViewController()
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super .init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
         
-        view.backgroundColor = .systemGray5
+        
+        
         setup()
         layout()
        
@@ -39,7 +35,8 @@ class SearchViewController: UIViewController {
     
     private lazy var TableView : UITableView = {
        let tableView = UITableView()
-        
+      
+    
         tableView.register(MediCell.self, forCellReuseIdentifier: "sampleCell")
         tableView.dataSource = self
         tableView.delegate = self
@@ -85,29 +82,49 @@ class SearchViewController: UIViewController {
             .subscribe(onNext: {t in
                 self.items = self.mediArray.filter{ $0.itemName.hasSuffix(t) || $0.itemName.contains(t)}
                 self.TableView.reloadData()
-
+                self.searchQuery = t
             })
             .disposed(by: disposBag)
+    }
+  
+    func search(query: String?) {
+        guard let query = query, !query.isEmpty else {return}
+        guard let url = URL(string: "http://ec2-52-79-100-20.ap-northeast-2.compute.amazonaws.com:8080/api/drug/detail") else {return}
 
-        
-//        func search(query: String?) {
-//            guard let query = query, !query.isEmpty else {return}
-//            guard let url = URL(string: "http://ec2-52-79-100-20.ap-northeast-2.compute.amazonaws.com:8080/api/drug/info") else {return}
-//
-//            AF.request(
-//                url,
-//                method: .post,
-//                parameters: ["drugName":"\(query)"],
-//                encoder: JSONParameterEncoder.prettyPrinted)
-//                .responseDecodable(of:MedicineInfoList.self){[weak self] response in
-//                    guard case .success(let data) = response.result else {return print("error!!")}
-//                }
-//                .resume()
-//
-//        }
+        AF.request(
+            url,
+            method: .post,
+            parameters: ["drugName":"\(query)"],
+            encoder: JSONParameterEncoder.prettyPrinted)
+            .responseDecodable(of:MedicineDetail.self){ response in
+                if response.response?.statusCode == 200 {
+                    guard let data = response.value else {
+                        return
+                    }
+                    
+                    let infoVC = MedicineInfoViewController()
+                    
+                    print(data.itemName)
+                    print(data.mixtureItemName)
+                    print(data.pregnancyBan)
+                    print(data.oldBan)
+                    print(data.sideEffect)
+                    print(data.medicImageUrl)
+                    
+                    infoVC.nameLabel.text = data.itemName
+                    infoVC.tabooNameLabel.text = data.mixtureItemName
+                    infoVC.pregnant = data.pregnancyBan
+                    infoVC.old = data.oldBan
+                    infoVC.sideEffectDetailLabel.text = data.sideEffect
+                    infoVC.imageUrl = data.medicImageUrl
+                    self.pushView(VC: infoVC)
+                }
+//                guard case .success(let data) = response.result else {return print("error!!")}
+            }
+            .resume()
+
     }
  
-    
 }
 
 
@@ -123,31 +140,20 @@ extension SearchViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "sampleCell", for: indexPath) as!
         MediCell
-
+        
+        
         cell.nameLabel.text = self.items[indexPath.row].itemName
         cell.setup()
         cell.selectionStyle = .none
         return cell
     }
-    
-    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-        if indexPath.section == 0 {
-                return UITableView.automaticDimension
-            } else {
-                return 30
-            }
-    }
-
 
 }
 
 extension SearchViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-
-        let infoVC = self.InfoViewController
-        infoVC.nameLabel.text = self.items[indexPath.row].itemName
-        
-        self.navigationController?.pushViewController(infoVC, animated: true)
+        print("test")
+        self.search(query: self.items[indexPath.row].itemName)
     }
 }
 

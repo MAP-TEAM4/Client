@@ -24,8 +24,8 @@
 		6BE5D34528522D52008DED9F /* UserMedicineModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BE5D34428522D52008DED9F /* UserMedicineModel.swift */; };
 		6BE5D34728524B3F008DED9F /* UIButton++.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BE5D34628524B3F008DED9F /* UIButton++.swift */; };
 		6BFA3477284DE044009B7C90 /* NotiListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BFA3476284DE044009B7C90 /* NotiListViewController.swift */; };
-		FB00059A2852274C00307E66 /* MedicineInfoList.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB0005992852274C00307E66 /* MedicineInfoList.swift */; };
-		FB00059C28522BF300307E66 /* MediCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB00059B28522BF300307E66 /* MediCell.swift */; };
+		FB0005A22852529900307E66 /* MediCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB0005A12852529900307E66 /* MediCell.swift */; };
+		FB0005A428526C2F00307E66 /* MedicineDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB0005A328526C2F00307E66 /* MedicineDetail.swift */; };
 		FB83E6BD282BA46A00A09F3D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB83E6BC282BA46A00A09F3D /* AppDelegate.swift */; };
 		FB83E6BF282BA46A00A09F3D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB83E6BE282BA46A00A09F3D /* SceneDelegate.swift */; };
 		FB83E6C1282BA46A00A09F3D /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB83E6C0282BA46A00A09F3D /* SearchViewController.swift */; };
@@ -54,8 +54,8 @@
 		6BFA3476284DE044009B7C90 /* NotiListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotiListViewController.swift; sourceTree = "<group>"; };
 		C5F4D765948AE787F1A38A8E /* Pods_medicine.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_medicine.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D67FC2FD6C851CFD0C6E8D6F /* Pods-medicine.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-medicine.release.xcconfig"; path = "Target Support Files/Pods-medicine/Pods-medicine.release.xcconfig"; sourceTree = "<group>"; };
-		FB0005992852274C00307E66 /* MedicineInfoList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedicineInfoList.swift; sourceTree = "<group>"; };
-		FB00059B28522BF300307E66 /* MediCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediCell.swift; sourceTree = "<group>"; };
+		FB0005A12852529900307E66 /* MediCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediCell.swift; sourceTree = "<group>"; };
+		FB0005A328526C2F00307E66 /* MedicineDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedicineDetail.swift; sourceTree = "<group>"; };
 		FB83E6B9282BA46A00A09F3D /* medicine.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = medicine.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FB83E6BC282BA46A00A09F3D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FB83E6BE282BA46A00A09F3D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -121,6 +121,7 @@
 			isa = PBXGroup;
 			children = (
 				6BE5D33E28520D2E008DED9F /* MedicineModel.swift */,
+				FB0005A328526C2F00307E66 /* MedicineDetail.swift */,
 				6BE5D34428522D52008DED9F /* UserMedicineModel.swift */,
 			);
 			path = models;
@@ -141,8 +142,7 @@
 			isa = PBXGroup;
 			children = (
 				FB83E6C0282BA46A00A09F3D /* SearchViewController.swift */,
-				FB00059B28522BF300307E66 /* MediCell.swift */,
-				FB0005992852274C00307E66 /* MedicineInfoList.swift */,
+				FB0005A12852529900307E66 /* MediCell.swift */,
 				FB83E6D3282BB4DE00A09F3D /* MedicineInfoViewController.swift */,
 			);
 			path = search;
@@ -348,9 +348,10 @@
 				FB83E6D4282BB4DE00A09F3D /* MedicineInfoViewController.swift in Sources */,
 				FB83E6C1282BA46A00A09F3D /* SearchViewController.swift in Sources */,
 				6BA33FB928508A96000C4674 /* AddNotiTimeViewController.swift in Sources */,
-				FB00059A2852274C00307E66 /* MedicineInfoList.swift in Sources */,
 				6BE5D33D28520C00008DED9F /* MedicineListService.swift in Sources */,
 				6BE5D34528522D52008DED9F /* UserMedicineModel.swift in Sources */,
+				FB0005A22852529900307E66 /* MediCell.swift in Sources */,
+				FB0005A428526C2F00307E66 /* MedicineDetail.swift in Sources */,
 				6B903A0A2851CD35005F2971 /* APIConstants.swift in Sources */,
 				FB83E6BD282BA46A00A09F3D /* AppDelegate.swift in Sources */,
 				6BE5D33F28520D2E008DED9F /* MedicineModel.swift in Sources */,
