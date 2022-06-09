@@ -17,6 +17,9 @@
 		6BA33FB928508A96000C4674 /* AddNotiTimeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BA33FB828508A96000C4674 /* AddNotiTimeViewController.swift */; };
 		6BE5D3382851D997008DED9F /* NotiMedicineCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BE5D3372851D997008DED9F /* NotiMedicineCell.swift */; };
 		6BE5D33B2851E64D008DED9F /* AlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BE5D33A2851E64D008DED9F /* AlertController.swift */; };
+		6BE5D33D28520C00008DED9F /* MedicineListService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BE5D33C28520C00008DED9F /* MedicineListService.swift */; };
+		6BE5D33F28520D2E008DED9F /* MedicineModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BE5D33E28520D2E008DED9F /* MedicineModel.swift */; };
+		6BE5D34128521465008DED9F /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BE5D34028521465008DED9F /* MainViewController.swift */; };
 		6BFA3477284DE044009B7C90 /* NotiListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BFA3476284DE044009B7C90 /* NotiListViewController.swift */; };
 		FB83E6BD282BA46A00A09F3D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB83E6BC282BA46A00A09F3D /* AppDelegate.swift */; };
 		FB83E6BF282BA46A00A09F3D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB83E6BE282BA46A00A09F3D /* SceneDelegate.swift */; };
@@ -37,6 +40,9 @@
 		6BA33FB828508A96000C4674 /* AddNotiTimeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNotiTimeViewController.swift; sourceTree = "<group>"; };
 		6BE5D3372851D997008DED9F /* NotiMedicineCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotiMedicineCell.swift; sourceTree = "<group>"; };
 		6BE5D33A2851E64D008DED9F /* AlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertController.swift; sourceTree = "<group>"; };
+		6BE5D33C28520C00008DED9F /* MedicineListService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedicineListService.swift; sourceTree = "<group>"; };
+		6BE5D33E28520D2E008DED9F /* MedicineModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedicineModel.swift; sourceTree = "<group>"; };
+		6BE5D34028521465008DED9F /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		6BFA3476284DE044009B7C90 /* NotiListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotiListViewController.swift; sourceTree = "<group>"; };
 		C5F4D765948AE787F1A38A8E /* Pods_medicine.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_medicine.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D67FC2FD6C851CFD0C6E8D6F /* Pods-medicine.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-medicine.release.xcconfig"; path = "Target Support Files/Pods-medicine/Pods-medicine.release.xcconfig"; sourceTree = "<group>"; };
@@ -86,6 +92,7 @@
 			children = (
 				6BA33FAF285081F5000C4674 /* search */,
 				6BA33FAE285081B8000C4674 /* notification */,
+				6BE5D34028521465008DED9F /* MainViewController.swift */,
 			);
 			path = viewControllers;
 			sourceTree = "<group>";
@@ -94,6 +101,7 @@
 			isa = PBXGroup;
 			children = (
 				6B903A082851CD24005F2971 /* base */,
+				6BE5D33C28520C00008DED9F /* MedicineListService.swift */,
 			);
 			path = services;
 			sourceTree = "<group>";
@@ -101,6 +109,7 @@
 		6BA33FAD285081A4000C4674 /* models */ = {
 			isa = PBXGroup;
 			children = (
+				6BE5D33E28520D2E008DED9F /* MedicineModel.swift */,
 			);
 			path = models;
 			sourceTree = "<group>";
@@ -315,13 +324,16 @@
 				6BA33FB128508262000C4674 /* AddMedicineNameViewController.swift in Sources */,
 				6B903A0C2851CDD3005F2971 /* NetworkResult.swift in Sources */,
 				6BE5D33B2851E64D008DED9F /* AlertController.swift in Sources */,
+				6BE5D34128521465008DED9F /* MainViewController.swift in Sources */,
 				6B903A0E2851CDE9005F2971 /* RequestData.swift in Sources */,
 				6BA33FB7285084E4000C4674 /* ViewProtocol.swift in Sources */,
 				FB83E6D4282BB4DE00A09F3D /* MedicineInfoViewController.swift in Sources */,
 				FB83E6C1282BA46A00A09F3D /* SearchViewController.swift in Sources */,
 				6BA33FB928508A96000C4674 /* AddNotiTimeViewController.swift in Sources */,
+				6BE5D33D28520C00008DED9F /* MedicineListService.swift in Sources */,
 				6B903A0A2851CD35005F2971 /* APIConstants.swift in Sources */,
 				FB83E6BD282BA46A00A09F3D /* AppDelegate.swift in Sources */,
+				6BE5D33F28520D2E008DED9F /* MedicineModel.swift in Sources */,
 				FB83E6BF282BA46A00A09F3D /* SceneDelegate.swift in Sources */,
 				6BFA3477284DE044009B7C90 /* NotiListViewController.swift in Sources */,
 			);
