@@ -10,18 +10,10 @@ import SnapKit
 import Then
 
 class AddMedicineNameViewController: UIViewController, ViewProtocol {
-    let testNames = [
-        "가나다라",
-        "마바사아",
-        "김동규짱",
-        "프론트엔드",
-        "iOS 싫어",
-        "모앱2"
-    ]
+    let testNames = ["휴온스탈니플루메이트정", "휴자틴정150mg(니자티딘)", "세르젠정(살리실산이미다졸)", "리소젠정(리소짐염산염)", "리세론플러스정", "리버골드에프연질캡슐", "다나펜큐연질캡슐", "노말큐연질캡슐", "노바디크정5밀리그램(암로디핀베실산염)"]
     
     private let nameSearchBar = UISearchBar().then {
         $0.placeholder = "약품 이름을 검색해주세요"
-        $0.setImage(UIImage(), for: UISearchBar.Icon.search, state: .normal)
         $0.returnKeyType = .done
     }
     
@@ -81,5 +73,6 @@ extension AddMedicineNameViewController: UITableViewDataSource, UITableViewDeleg
         let nextVC = AddNotiTimeViewController()
         nextVC.medicineName = testNames[indexPath.row]
         self.pushView(VC: nextVC)
+        nameTableView.deselectRow(at: indexPath, animated: true)
     }
 }

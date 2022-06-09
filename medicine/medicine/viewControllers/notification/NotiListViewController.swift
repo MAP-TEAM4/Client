@@ -33,7 +33,10 @@ class NotiListViewController: UIViewController, ViewProtocol {
     }
     
     // MARK: - View Protocol Methods
-    internal func setUpValue() {}
+    internal func setUpValue() {
+        UserDefaults.standard.set([], forKey: "keys")
+        print(UserDefaults.standard.dictionaryRepresentation())
+    }
     
     internal func setUpView() {
         _ = [
@@ -48,7 +51,7 @@ class NotiListViewController: UIViewController, ViewProtocol {
         let rightMargin: CGFloat = -20
 
         addMedicineButton.snp.makeConstraints { make in
-            make.bottom.equalToSuperview().offset(-50)
+            make.bottom.equalToSuperview().offset(-100)
             make.leading.equalToSuperview().offset(leftMargin)
             make.trailing.equalToSuperview().offset(rightMargin)
             make.height.equalTo(50)

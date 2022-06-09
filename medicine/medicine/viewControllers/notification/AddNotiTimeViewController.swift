@@ -12,12 +12,13 @@ import UserNotifications
 
 class AddNotiTimeViewController: UIViewController, ViewProtocol {
     var medicineName = ""
+  
     private var timeIndetifier = 0
     private var notificationTimes: [Date?] = []
     private let notificationCenter = UNUserNotificationCenter.current()
     
     private let nameLabel = UILabel().then {
-        $0.font = UIFont.systemFont(ofSize: 22, weight: .regular)
+        $0.font = UIFont.systemFont(ofSize: 20, weight: .regular)
     }
     
     private let titleLabel = UILabel().then {
@@ -57,7 +58,6 @@ class AddNotiTimeViewController: UIViewController, ViewProtocol {
     }
     
     // MARK: - Action Setting Method
-    var test: Date = Date()
     private func setAction() {
         // 알림 시간 생성
         addButton.addAction(UIAction { _ in
@@ -106,11 +106,31 @@ class AddNotiTimeViewController: UIViewController, ViewProtocol {
             addTimeStack.addArrangedSubview(spacerView)
             self.verticalStack.addArrangedSubview(addTimeStack)
         }, for: .touchUpInside)
+        
+        // 등록 완료
+        completeButton.addAction(UIAction { _ in
+            var isSettingTimes = false
+            
+            for time in self.notificationTimes {
+                if (time != nil) {
+                    isSettingTimes = true
+                    break
+                }
+            }
+            
+            if (!isSettingTimes) {
+                return
+            }
+            
+            self.createUserNotification()
+            self.navigationController?.popToRootViewController(animated: true)
+        }, for: .touchUpInside)
     }
     
     // MARK: - View Protocol Methods
     internal func setUpValue() {
         nameLabel.text = "💊 \(medicineName)"
+        self.navigationController?.navigationBar.topItem?.backButtonTitle = ""
     }
     
     internal func setUpView() {
@@ -150,7 +170,8 @@ class AddNotiTimeViewController: UIViewController, ViewProtocol {
 }
 
 extension AddNotiTimeViewController {
-    func createUserNotification(scheduleTime: Date) {
+    func createUserNotification() {
+        // 알림 권환 확인
         notificationCenter.requestAuthorization(options: [.alert, .badge, .sound]) { (granted, error) in
             if let error = error {
                 print(error)
@@ -161,20 +182,51 @@ extension AddNotiTimeViewController {
                 print("Not Granted")
                 return
             }
-
+        }
+        // 알림 설정
+        let dateFormatter: DateFormatter = {
+            let formatter = DateFormatter()
+            formatter.locale = Locale(identifier: "ko_KR")
+            formatter.dateStyle = .none
+            formatter.timeStyle = .short
+            return formatter
+        }()
+        
+        var scheduleTimes: Set<String> = []
+        
+        notificationTimes.forEach { scheduleTime in
+            guard let scheduleTime = scheduleTime else { return }
             let content = UNMutableNotificationContent()
             content.sound = UNNotificationSound.default
-            content.title = "💊 \(self.medicineName) 복용 시간 입니다!"
+            content.title = "💊 \(self.medicineName) 복용 시간입니다!"
 
             let dateComponents = Calendar.current.dateComponents([.hour, .minute], from: scheduleTime)
             let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)
             let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
 
             self.notificationCenter.add(request) { error in
-                if let error = error {
-                    print(error)
-                }
+                if let error = error { print(error) }
             }
+            
+            let timeString = dateFormatter.string(from: scheduleTime)
+            scheduleTimes.insert(timeString)
+        }
+        
+        DispatchQueue.global().async {
+            self.storeNotification(scheduleTimes: scheduleTimes)
+        }
+    }
+    
+    func storeNotification(scheduleTimes: Set<String>) {
+        let times = Array(scheduleTimes)
+        let defaults = UserDefaults.standard
+        
+        if defaults.object(forKey: self.medicineName) == nil {
+            guard var keys = defaults.array(forKey: "keys") else { return }
+            defaults.set(keys + [self.medicineName], forKey: "keys")
+            defaults.set(times, forKey: self.medicineName)
+        } else {
+            print("이미 알림 설정되어있는 약품입니다")
         }
     }
 }
