@@ -13,12 +13,17 @@ class NotiMedicineCell: UITableViewCell, ViewProtocol {
     static let cellIdentifier: String = "NotiMedicineCell"
     
     var nameLabel = UILabel().then {
-        $0.font = UIFont.systemFont(ofSize: 20, weight: .bold)
+        $0.font = UIFont.systemFont(ofSize: 18, weight: .bold)
     }
     
     var timeStackView = UIStackView().then {
         $0.axis = .horizontal
         $0.spacing = 10
+    }
+    
+    var drugPrecautionLabel = UILabel().then {
+        $0.font = UIFont.systemFont(ofSize: 14)
+        $0.textColor = .systemGray
     }
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -38,11 +43,12 @@ class NotiMedicineCell: UITableViewCell, ViewProtocol {
     func setUpView() {
         self.contentView.addSubview(nameLabel)
         self.contentView.addSubview(timeStackView)
+        self.contentView.addSubview(drugPrecautionLabel)
     }
     
     func setConstraints() {
         let padding: CGFloat = 10
-        let labelSpacing: CGFloat = 20
+        let labelSpacing: CGFloat = 33
         
         nameLabel.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(padding)
@@ -52,7 +58,11 @@ class NotiMedicineCell: UITableViewCell, ViewProtocol {
         timeStackView.snp.makeConstraints { make in
             make.top.equalTo(nameLabel).offset(labelSpacing)
             make.leading.equalToSuperview().offset(padding)
-            make.bottom.equalToSuperview().offset(padding)
+        }
+        
+        drugPrecautionLabel.snp.makeConstraints { make in
+            make.top.equalTo(timeStackView).offset(labelSpacing - 5)
+            make.leading.equalToSuperview().offset(padding)
         }
     }
 }
