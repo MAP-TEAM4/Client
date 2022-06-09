@@ -61,6 +61,24 @@ class AddNotiTimeViewController: UIViewController, ViewProtocol {
     private func setAction() {
         // 알림 시간 생성
         addButton.addAction(UIAction { _ in
+            var timeCount = 0
+            
+            for time in self.notificationTimes {
+                if (time != nil) {
+                    timeCount += 1
+                }
+            }
+            
+            if (timeCount > 4) {
+                let alert = Alert(
+                    isAddCancel: false,
+                    title: "",
+                    message: "알림 시간을 최대 5개까지 가능합니다"
+                ) { _ in }
+                self.present(alert.showAlert(), animated: true)
+                return
+            }
+            
             let addTimeStack = UIStackView().then {
                 $0.axis = .horizontal
                 $0.alignment = .center
@@ -119,11 +137,16 @@ class AddNotiTimeViewController: UIViewController, ViewProtocol {
             }
             
             if (!isSettingTimes) {
+                let alert = Alert(
+                    isAddCancel: false,
+                    title: "알림 시간을 추가해주세요",
+                    message: ""
+                ) { _ in }
+                self.present(alert.showAlert(), animated: true)
                 return
             }
             
             self.createUserNotification()
-            self.navigationController?.popToRootViewController(animated: true)
         }, for: .touchUpInside)
     }
     
@@ -192,6 +215,7 @@ extension AddNotiTimeViewController {
             return formatter
         }()
         
+        let uuidString = UUID().uuidString
         var scheduleTimes: Set<String> = []
         
         notificationTimes.forEach { scheduleTime in
@@ -202,7 +226,7 @@ extension AddNotiTimeViewController {
 
             let dateComponents = Calendar.current.dateComponents([.hour, .minute], from: scheduleTime)
             let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)
-            let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
+            let request = UNNotificationRequest(identifier: uuidString, content: content, trigger: trigger)
 
             self.notificationCenter.add(request) { error in
                 if let error = error { print(error) }
@@ -213,20 +237,30 @@ extension AddNotiTimeViewController {
         }
         
         DispatchQueue.global().async {
-            self.storeNotification(scheduleTimes: scheduleTimes)
+            self.storeNotification(scheduleTimes: scheduleTimes, uuidString: uuidString)
         }
     }
     
-    func storeNotification(scheduleTimes: Set<String>) {
-        let times = Array(scheduleTimes)
+    func storeNotification(scheduleTimes: Set<String>, uuidString: String) {
+        let times = [uuidString] + Array(scheduleTimes)
         let defaults = UserDefaults.standard
+        let key = "💊 \(medicineName)"
         
-        if defaults.object(forKey: self.medicineName) == nil {
-            guard var keys = defaults.array(forKey: "keys") else { return }
-            defaults.set(keys + [self.medicineName], forKey: "keys")
-            defaults.set(times, forKey: self.medicineName)
-        } else {
-            print("이미 알림 설정되어있는 약품입니다")
+        if defaults.object(forKey: key) == nil {
+            defaults.set(times, forKey: key)
+            DispatchQueue.main.async {
+                self.navigationController?.popToRootViewController(animated: true)
+            }
+            return
+        }
+        
+        DispatchQueue.main.async {
+            let alert = Alert(
+                isAddCancel: false,
+                title: "이미 등록되어 있는 약품입니다",
+                message: "해당 약품 삭제 후 재등록해주세요"
+            ) { _ in }
+            self.present(alert.showAlert(), animated: true)
         }
     }
 }
