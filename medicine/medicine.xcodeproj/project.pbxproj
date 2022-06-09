@@ -7,16 +7,27 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6BA33FB128508262000C4674 /* AddMedicineNameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BA33FB028508262000C4674 /* AddMedicineNameViewController.swift */; };
+		6BA33FB428508432000C4674 /* UIViewController++.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BA33FB328508432000C4674 /* UIViewController++.swift */; };
+		6BA33FB7285084E4000C4674 /* ViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BA33FB6285084E4000C4674 /* ViewProtocol.swift */; };
+		6BA33FB928508A96000C4674 /* AddNotiTimeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BA33FB828508A96000C4674 /* AddNotiTimeViewController.swift */; };
+		6BFA3477284DE044009B7C90 /* NotiListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BFA3476284DE044009B7C90 /* NotiListViewController.swift */; };
 		FB83E6BD282BA46A00A09F3D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB83E6BC282BA46A00A09F3D /* AppDelegate.swift */; };
 		FB83E6BF282BA46A00A09F3D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB83E6BE282BA46A00A09F3D /* SceneDelegate.swift */; };
 		FB83E6C1282BA46A00A09F3D /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB83E6C0282BA46A00A09F3D /* SearchViewController.swift */; };
 		FB83E6C6282BA46D00A09F3D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FB83E6C5282BA46D00A09F3D /* Assets.xcassets */; };
 		FB83E6C9282BA46D00A09F3D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FB83E6C7282BA46D00A09F3D /* LaunchScreen.storyboard */; };
-		FB83E6D2282BA73200A09F3D /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = FB83E6D1282BA73200A09F3D /* SnapKit */; };
 		FB83E6D4282BB4DE00A09F3D /* MedicineInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB83E6D3282BB4DE00A09F3D /* MedicineInfoViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5183EAF8DEA7587F0A8EAC02 /* Pods-medicine.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-medicine.debug.xcconfig"; path = "Target Support Files/Pods-medicine/Pods-medicine.debug.xcconfig"; sourceTree = "<group>"; };
+		6BA33FB028508262000C4674 /* AddMedicineNameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMedicineNameViewController.swift; sourceTree = "<group>"; };
+		6BA33FB328508432000C4674 /* UIViewController++.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController++.swift"; sourceTree = "<group>"; };
+		6BA33FB6285084E4000C4674 /* ViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewProtocol.swift; sourceTree = "<group>"; };
+		6BA33FB828508A96000C4674 /* AddNotiTimeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNotiTimeViewController.swift; sourceTree = "<group>"; };
+		6BFA3476284DE044009B7C90 /* NotiListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotiListViewController.swift; sourceTree = "<group>"; };
+		D67FC2FD6C851CFD0C6E8D6F /* Pods-medicine.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-medicine.release.xcconfig"; path = "Target Support Files/Pods-medicine/Pods-medicine.release.xcconfig"; sourceTree = "<group>"; };
 		FB83E6B9282BA46A00A09F3D /* medicine.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = medicine.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FB83E6BC282BA46A00A09F3D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FB83E6BE282BA46A00A09F3D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -32,18 +43,85 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FB83E6D2282BA73200A09F3D /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		16C783ED74C496D25AAB0E62 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				5183EAF8DEA7587F0A8EAC02 /* Pods-medicine.debug.xcconfig */,
+				D67FC2FD6C851CFD0C6E8D6F /* Pods-medicine.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		6BA33FAB2850816D000C4674 /* viewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				6BA33FAF285081F5000C4674 /* search */,
+				6BA33FAE285081B8000C4674 /* notification */,
+			);
+			path = viewControllers;
+			sourceTree = "<group>";
+		};
+		6BA33FAC2850818B000C4674 /* services */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = services;
+			sourceTree = "<group>";
+		};
+		6BA33FAD285081A4000C4674 /* models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = models;
+			sourceTree = "<group>";
+		};
+		6BA33FAE285081B8000C4674 /* notification */ = {
+			isa = PBXGroup;
+			children = (
+				6BFA3476284DE044009B7C90 /* NotiListViewController.swift */,
+				6BA33FB028508262000C4674 /* AddMedicineNameViewController.swift */,
+				6BA33FB828508A96000C4674 /* AddNotiTimeViewController.swift */,
+			);
+			path = notification;
+			sourceTree = "<group>";
+		};
+		6BA33FAF285081F5000C4674 /* search */ = {
+			isa = PBXGroup;
+			children = (
+				FB83E6C0282BA46A00A09F3D /* SearchViewController.swift */,
+				FB83E6D3282BB4DE00A09F3D /* MedicineInfoViewController.swift */,
+			);
+			path = search;
+			sourceTree = "<group>";
+		};
+		6BA33FB228508410000C4674 /* extenstion */ = {
+			isa = PBXGroup;
+			children = (
+				6BA33FB328508432000C4674 /* UIViewController++.swift */,
+			);
+			path = extenstion;
+			sourceTree = "<group>";
+		};
+		6BA33FB5285084CF000C4674 /* protocols */ = {
+			isa = PBXGroup;
+			children = (
+				6BA33FB6285084E4000C4674 /* ViewProtocol.swift */,
+			);
+			path = protocols;
+			sourceTree = "<group>";
+		};
 		FB83E6B0282BA46A00A09F3D = {
 			isa = PBXGroup;
 			children = (
 				FB83E6BB282BA46A00A09F3D /* medicine */,
 				FB83E6BA282BA46A00A09F3D /* Products */,
+				16C783ED74C496D25AAB0E62 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -58,10 +136,13 @@
 		FB83E6BB282BA46A00A09F3D /* medicine */ = {
 			isa = PBXGroup;
 			children = (
+				6BA33FB5285084CF000C4674 /* protocols */,
+				6BA33FB228508410000C4674 /* extenstion */,
+				6BA33FAD285081A4000C4674 /* models */,
+				6BA33FAC2850818B000C4674 /* services */,
+				6BA33FAB2850816D000C4674 /* viewControllers */,
 				FB83E6BC282BA46A00A09F3D /* AppDelegate.swift */,
 				FB83E6BE282BA46A00A09F3D /* SceneDelegate.swift */,
-				FB83E6C0282BA46A00A09F3D /* SearchViewController.swift */,
-				FB83E6D3282BB4DE00A09F3D /* MedicineInfoViewController.swift */,
 				FB83E6C5282BA46D00A09F3D /* Assets.xcassets */,
 				FB83E6C7282BA46D00A09F3D /* LaunchScreen.storyboard */,
 				FB83E6CA282BA46D00A09F3D /* Info.plist */,
@@ -76,9 +157,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = FB83E6CD282BA46D00A09F3D /* Build configuration list for PBXNativeTarget "medicine" */;
 			buildPhases = (
+				8B576A6768B3F1C1FAFD71EA /* [CP] Check Pods Manifest.lock */,
 				FB83E6B5282BA46A00A09F3D /* Sources */,
 				FB83E6B6282BA46A00A09F3D /* Frameworks */,
 				FB83E6B7282BA46A00A09F3D /* Resources */,
+				836D44DF438BA3627FD16E3D /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -86,7 +169,6 @@
 			);
 			name = medicine;
 			packageProductDependencies = (
-				FB83E6D1282BA73200A09F3D /* SnapKit */,
 			);
 			productName = medicine;
 			productReference = FB83E6B9282BA46A00A09F3D /* medicine.app */;
@@ -140,15 +222,62 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		836D44DF438BA3627FD16E3D /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-medicine/Pods-medicine-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-medicine/Pods-medicine-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-medicine/Pods-medicine-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8B576A6768B3F1C1FAFD71EA /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-medicine-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		FB83E6B5282BA46A00A09F3D /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6BA33FB428508432000C4674 /* UIViewController++.swift in Sources */,
+				6BA33FB128508262000C4674 /* AddMedicineNameViewController.swift in Sources */,
+				6BA33FB7285084E4000C4674 /* ViewProtocol.swift in Sources */,
 				FB83E6D4282BB4DE00A09F3D /* MedicineInfoViewController.swift in Sources */,
 				FB83E6C1282BA46A00A09F3D /* SearchViewController.swift in Sources */,
+				6BA33FB928508A96000C4674 /* AddNotiTimeViewController.swift in Sources */,
 				FB83E6BD282BA46A00A09F3D /* AppDelegate.swift in Sources */,
 				FB83E6BF282BA46A00A09F3D /* SceneDelegate.swift in Sources */,
+				6BFA3477284DE044009B7C90 /* NotiListViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -284,6 +413,7 @@
 		};
 		FB83E6CE282BA46D00A09F3D /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5183EAF8DEA7587F0A8EAC02 /* Pods-medicine.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -311,6 +441,7 @@
 		};
 		FB83E6CF282BA46D00A09F3D /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D67FC2FD6C851CFD0C6E8D6F /* Pods-medicine.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -369,14 +500,6 @@
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		FB83E6D1282BA73200A09F3D /* SnapKit */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = FB83E6D0282BA73200A09F3D /* XCRemoteSwiftPackageReference "SnapKit" */;
-			productName = SnapKit;
-		};
-/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = FB83E6B1282BA46A00A09F3D /* Project object */;
 }
