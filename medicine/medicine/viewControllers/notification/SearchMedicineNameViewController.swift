@@ -48,6 +48,7 @@ class SearchMedicineNameViewController: UIViewController, ViewProtocol {
         nameTableView.dataSource = self
         nameTableView.delegate = self
         
+        self.navigationController?.navigationBar.tintColor = .systemPink
         self.navigationController?.navigationBar.topItem?.backButtonTitle = ""
         self.navigationItem.hidesSearchBarWhenScrolling = false
         self.navigationItem.titleView = nameSearchBar
@@ -75,6 +76,7 @@ extension SearchMedicineNameViewController: UITableViewDataSource, UITableViewDe
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell()
         cell.textLabel?.text = medicineNames[indexPath.row]
+        cell.textLabel?.font = UIFont.systemFont(ofSize: 14)
         return cell
     }
     

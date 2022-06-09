@@ -11,7 +11,6 @@ struct MedicineModel: Decodable {
     let itemName: String
     let entpName: String
     let medicImageUrl: String
-    let className: String
 }
 
 class MedicineList {
