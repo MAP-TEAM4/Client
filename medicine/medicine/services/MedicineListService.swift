@@ -10,7 +10,7 @@ import Alamofire
 struct MedicineListService {
     static let shared = MedicineListService()
     
-    func getMedicineAll(successHandler: @escaping ([MedicineModel])->Void) {
+    func getMedicineAll(successHandler: @escaping ([MedicineModel]) -> Void) {
         let url = APIConstants.getMedicineAll
         
         RequestData().sendRequest(url: url, body: nil, method: .get, model: [MedicineModel].self) { response in
@@ -20,8 +20,8 @@ struct MedicineListService {
                     print("전체 약품 리스트 요청 완료!!")
                     successHandler(data)
                 }
-            case.pathErr:
-                print("pathErr")
+            case.decodeErr:
+                print("decodeErr")
             case.requestErr:
                 print("requestErr")
             case.serverErr:

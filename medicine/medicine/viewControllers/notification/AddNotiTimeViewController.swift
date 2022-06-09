@@ -46,6 +46,7 @@ class AddNotiTimeViewController: UIViewController, ViewProtocol {
     private let completeButton = UIButton().then {
         $0.backgroundColor = .systemBlue
         $0.setTitle("설정 완료", for: .normal)
+        $0.setCustom()
     }
     
     // MARK: - Life Cycle
@@ -249,7 +250,13 @@ extension AddNotiTimeViewController {
         if defaults.object(forKey: key) == nil {
             defaults.set(times, forKey: key)
             DispatchQueue.main.async {
-                self.navigationController?.popToRootViewController(animated: true)
+                let VCs: [UIViewController] = self.navigationController!.viewControllers
+                for (i, prevVC) in VCs.enumerated() {
+                    if (i == 1) {
+                        self.navigationController?.popToViewController(prevVC, animated: true)
+                        break
+                    }
+                }
             }
             return
         }

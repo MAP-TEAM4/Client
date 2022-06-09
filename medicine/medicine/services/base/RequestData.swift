@@ -39,7 +39,7 @@ struct RequestData {
         switch status {
         case 200:
             guard let decodedData = try? decoder.decode(model, from: data) else {
-                return .pathErr
+                return .decodeErr
             }
             return .success(decodedData)
         case 400..<500:

@@ -11,19 +11,26 @@ import Then
 
 
 class MainViewController: UIViewController, ViewProtocol {
-    private let logoLabel = UILabel().then {
-        $0.text = "앱 이름"
-        $0.font = UIFont.systemFont(ofSize: 20, weight: .regular)
+    private let logoEmojiLabel = UILabel().then {
+        $0.text = "💊"
+        $0.font = UIFont.systemFont(ofSize: 40, weight: .bold)
+    }
+    private let logoTextLabel = UILabel().then {
+        $0.text = "삐-약"
+        $0.tintColor = .systemPink
+        $0.font = UIFont.systemFont(ofSize: 40, weight: .bold)
     }
     
     private let searchButton = UIButton().then {
         $0.backgroundColor = .systemBlue
-        $0.setTitle("검색", for: .normal)
+        $0.setTitle("🔎  약품 검색", for: .normal)
+        $0.setCustom()
     }
     
     private let notificationButton = UIButton().then {
         $0.backgroundColor = .systemBlue
-        $0.setTitle("알림 설정", for: .normal)
+        $0.setTitle("⏰  알림 설정", for: .normal)
+        $0.setCustom()
     }
     
     // MARK: - Life Cycle
@@ -33,6 +40,7 @@ class MainViewController: UIViewController, ViewProtocol {
         setUpView()
         setConstraints()
         setAction()
+        requestMedicineList()
     }
     
     // MARK: - Action Setting Method
@@ -47,34 +55,38 @@ class MainViewController: UIViewController, ViewProtocol {
     }
     
     // MARK: - View Protocol Methods
-    func setUpValue() {
-        requestMedicineList()
-    }
+    func setUpValue() {}
     
     func setUpView() {
-        self.view.addSubview(logoLabel)
+        self.view.addSubview(logoEmojiLabel)
+        self.view.addSubview(logoTextLabel)
         self.view.addSubview(searchButton)
         self.view.addSubview(notificationButton)
     }
     
     func setConstraints() {
-        let leftMargin: CGFloat = 20
-        let rightMargin: CGFloat = -20
+        let leftMargin: CGFloat = 40
+        let rightMargin: CGFloat = -40
         
-        logoLabel.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(150)
+        logoEmojiLabel.snp.makeConstraints { make in
+            make.top.equalToSuperview().offset(200)
+            make.centerX.equalToSuperview()
+        }
+        
+        logoTextLabel.snp.makeConstraints { make in
+            make.top.equalTo(logoEmojiLabel).offset(80)
             make.centerX.equalToSuperview()
         }
         
         searchButton.snp.makeConstraints { make in
-            make.bottom.equalTo(notificationButton).offset(-100)
+            make.top.equalTo(logoTextLabel).offset(150)
             make.leading.equalToSuperview().offset(leftMargin)
             make.trailing.equalToSuperview().offset(rightMargin)
             make.height.equalTo(50)
         }
         
         notificationButton.snp.makeConstraints { make in
-            make.bottom.equalToSuperview().offset(-170)
+            make.top.equalTo(searchButton).offset(100)
             make.leading.equalToSuperview().offset(leftMargin)
             make.trailing.equalToSuperview().offset(rightMargin)
             make.height.equalTo(50)

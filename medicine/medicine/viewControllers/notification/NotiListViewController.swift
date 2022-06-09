@@ -11,6 +11,10 @@ import Then
 import UserNotifications
 
 class NotiListViewController: UIViewController, ViewProtocol {
+    private var combinationMedic: Set<String> = []
+    private var pregnancyMedic: [String] = []
+    private var oldmanMedic: [String] = []
+    
     private var storedMedicines: [String] = []
     
     private let medicineTableView = UITableView()
@@ -18,6 +22,7 @@ class NotiListViewController: UIViewController, ViewProtocol {
     private let addMedicineButton = UIButton().then {
         $0.backgroundColor = .systemBlue
         $0.setTitle("복용 약품 추가", for: .normal)
+        $0.setCustom()
     }
     
     // MARK: - Life Cycle
@@ -32,12 +37,13 @@ class NotiListViewController: UIViewController, ViewProtocol {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         loadNotiTimes()
+        requestUserMedicineNoti()
     }
     
     // MARK: - Action Setting Method
     private func setAction() {
         addMedicineButton.addAction(UIAction { _ in
-            self.pushView(VC: AddMedicineNameViewController())
+            self.pushView(VC: SearchMedicineNameViewController())
         }, for: .touchUpInside)
     }
     
@@ -49,6 +55,7 @@ class NotiListViewController: UIViewController, ViewProtocol {
             NotiMedicineCell.self,
             forCellReuseIdentifier: NotiMedicineCell.cellIdentifier
         )
+        self.navigationController?.navigationBar.topItem?.backButtonTitle = ""
     }
     
     internal func setUpView() {
@@ -104,6 +111,34 @@ extension NotiListViewController {
         defaults.removeObject(forKey: key)
         loadNotiTimes()
     }
+    
+    func requestUserMedicineNoti() {
+        var slicedNames: [String] = []
+        storedMedicines.forEach { medicine in
+            let startIdx = medicine.index(medicine.startIndex, offsetBy: 2)
+            let sliced = medicine[startIdx...]
+            slicedNames.append("\(sliced)")
+        }
+        
+        UserMedicineService.shared.getUserMedicineNoti(storedMedicines: slicedNames) { data in
+            print(data)
+            data.combinationNoti.enumerated().forEach { (i, medic) in
+                if (medic == "null") { return }
+                let medic = "💊 \(medic)"
+                self.combinationMedic.insert(medic)
+                self.combinationMedic.insert(self.storedMedicines[i])
+                
+                if (data.pregnancyNoti[i]) {
+                    self.pregnancyMedic.append(medic)
+                }
+                
+                if (data.oldmanNoti[i]) {
+                    self.oldmanMedic.append(medic)
+                }
+            }
+            self.medicineTableView.reloadData()
+        }
+    }
 }
 
 extension NotiListViewController: UITableViewDataSource, UITableViewDelegate {
@@ -118,8 +153,11 @@ extension NotiListViewController: UITableViewDataSource, UITableViewDelegate {
         
         cell.removeAllArrangedSubviews()
         
+        // 셀 약품 이름 설정
         let medicineName = storedMedicines[indexPath.row]
+        cell.nameLabel.text = medicineName
         
+        // 셀 알림 시간 설정
         guard var times = UserDefaults.standard.array(forKey: medicineName) else {
             return cell
         }
@@ -127,7 +165,7 @@ extension NotiListViewController: UITableViewDataSource, UITableViewDelegate {
         times.removeFirst()
         
         let soretedTimes = (times as! [String]).sorted()
-       
+
         soretedTimes.forEach({ time in
             let timeLabel = UILabel().then {
                 $0.text = time
@@ -136,7 +174,22 @@ extension NotiListViewController: UITableViewDataSource, UITableViewDelegate {
             cell.timeStackView.addArrangedSubview(timeLabel)
         })
         
-        cell.nameLabel.text = medicineName
+        // 셀 약품 주의 사항 설정
+        var drugPrecautionsText = ""
+        if (Array(self.combinationMedic).contains(medicineName)) {
+            drugPrecautionsText += "❗️ 병용 금기  "
+        }
+        if (self.pregnancyMedic.contains(medicineName)) {
+            drugPrecautionsText += "🤰🏻 임부 금기  "
+        }
+        if (self.oldmanMedic.contains(medicineName)) {
+            drugPrecautionsText += "👴🏻 노인 금기  "
+        }
+        if (drugPrecautionsText == "") {
+            drugPrecautionsText += "✓ 안심"
+            cell.drugPrecautionLabel.textColor = .systemGreen
+        }
+        cell.drugPrecautionLabel.text = drugPrecautionsText
         
         return cell
     }
@@ -151,6 +204,6 @@ extension NotiListViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 80
+        return 100
     }
 }
