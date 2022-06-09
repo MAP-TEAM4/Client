@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FB0005902851FB8400307E66 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = FB00058F2851FB8400307E66 /* Kingfisher */; };
 		FB83E6BD282BA46A00A09F3D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB83E6BC282BA46A00A09F3D /* AppDelegate.swift */; };
 		FB83E6BF282BA46A00A09F3D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB83E6BE282BA46A00A09F3D /* SceneDelegate.swift */; };
 		FB83E6C1282BA46A00A09F3D /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB83E6C0282BA46A00A09F3D /* SearchViewController.swift */; };
@@ -14,6 +15,10 @@
 		FB83E6C9282BA46D00A09F3D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FB83E6C7282BA46D00A09F3D /* LaunchScreen.storyboard */; };
 		FB83E6D2282BA73200A09F3D /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = FB83E6D1282BA73200A09F3D /* SnapKit */; };
 		FB83E6D4282BB4DE00A09F3D /* MedicineInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB83E6D3282BB4DE00A09F3D /* MedicineInfoViewController.swift */; };
+		FBD40F79283BB2D20047CFCF /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = FBD40F78283BB2D20047CFCF /* RxCocoa */; };
+		FBD40F7B283BB2D20047CFCF /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = FBD40F7A283BB2D20047CFCF /* RxSwift */; };
+		FBD40F80283BBA120047CFCF /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = FBD40F7F283BBA120047CFCF /* Alamofire */; };
+		FBD40FA6284998570047CFCF /* MedicineModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBD40FA5284998570047CFCF /* MedicineModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,6 +30,7 @@
 		FB83E6C8282BA46D00A09F3D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FB83E6CA282BA46D00A09F3D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FB83E6D3282BB4DE00A09F3D /* MedicineInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedicineInfoViewController.swift; sourceTree = "<group>"; };
+		FBD40FA5284998570047CFCF /* MedicineModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedicineModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -32,13 +38,35 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FBD40F7B283BB2D20047CFCF /* RxSwift in Frameworks */,
+				FBD40F80283BBA120047CFCF /* Alamofire in Frameworks */,
+				FBD40F79283BB2D20047CFCF /* RxCocoa in Frameworks */,
 				FB83E6D2282BA73200A09F3D /* SnapKit in Frameworks */,
+				FB0005902851FB8400307E66 /* Kingfisher in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		FB0005912852198700307E66 /* viewContollers */ = {
+			isa = PBXGroup;
+			children = (
+				FB0005922852199B00307E66 /* search */,
+			);
+			path = viewContollers;
+			sourceTree = "<group>";
+		};
+		FB0005922852199B00307E66 /* search */ = {
+			isa = PBXGroup;
+			children = (
+				FB83E6C0282BA46A00A09F3D /* SearchViewController.swift */,
+				FBD40FA5284998570047CFCF /* MedicineModel.swift */,
+				FB83E6D3282BB4DE00A09F3D /* MedicineInfoViewController.swift */,
+			);
+			path = search;
+			sourceTree = "<group>";
+		};
 		FB83E6B0282BA46A00A09F3D = {
 			isa = PBXGroup;
 			children = (
@@ -60,8 +88,7 @@
 			children = (
 				FB83E6BC282BA46A00A09F3D /* AppDelegate.swift */,
 				FB83E6BE282BA46A00A09F3D /* SceneDelegate.swift */,
-				FB83E6C0282BA46A00A09F3D /* SearchViewController.swift */,
-				FB83E6D3282BB4DE00A09F3D /* MedicineInfoViewController.swift */,
+				FB0005912852198700307E66 /* viewContollers */,
 				FB83E6C5282BA46D00A09F3D /* Assets.xcassets */,
 				FB83E6C7282BA46D00A09F3D /* LaunchScreen.storyboard */,
 				FB83E6CA282BA46D00A09F3D /* Info.plist */,
@@ -87,6 +114,10 @@
 			name = medicine;
 			packageProductDependencies = (
 				FB83E6D1282BA73200A09F3D /* SnapKit */,
+				FBD40F78283BB2D20047CFCF /* RxCocoa */,
+				FBD40F7A283BB2D20047CFCF /* RxSwift */,
+				FBD40F7F283BBA120047CFCF /* Alamofire */,
+				FB00058F2851FB8400307E66 /* Kingfisher */,
 			);
 			productName = medicine;
 			productReference = FB83E6B9282BA46A00A09F3D /* medicine.app */;
@@ -118,6 +149,9 @@
 			mainGroup = FB83E6B0282BA46A00A09F3D;
 			packageReferences = (
 				FB83E6D0282BA73200A09F3D /* XCRemoteSwiftPackageReference "SnapKit" */,
+				FBD40F77283BB2D20047CFCF /* XCRemoteSwiftPackageReference "RxSwift" */,
+				FBD40F7E283BBA120047CFCF /* XCRemoteSwiftPackageReference "Alamofire" */,
+				FB00058E2851FB8400307E66 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 			);
 			productRefGroup = FB83E6BA282BA46A00A09F3D /* Products */;
 			projectDirPath = "";
@@ -149,6 +183,7 @@
 				FB83E6C1282BA46A00A09F3D /* SearchViewController.swift in Sources */,
 				FB83E6BD282BA46A00A09F3D /* AppDelegate.swift in Sources */,
 				FB83E6BF282BA46A00A09F3D /* SceneDelegate.swift in Sources */,
+				FBD40FA6284998570047CFCF /* MedicineModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -296,6 +331,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -323,6 +359,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -360,6 +397,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		FB00058E2851FB8400307E66 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 		FB83E6D0282BA73200A09F3D /* XCRemoteSwiftPackageReference "SnapKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SnapKit/SnapKit";
@@ -368,13 +413,49 @@
 				kind = branch;
 			};
 		};
+		FBD40F77283BB2D20047CFCF /* XCRemoteSwiftPackageReference "RxSwift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ReactiveX/RxSwift";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+		FBD40F7E283BBA120047CFCF /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		FB00058F2851FB8400307E66 /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FB00058E2851FB8400307E66 /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
+		};
 		FB83E6D1282BA73200A09F3D /* SnapKit */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = FB83E6D0282BA73200A09F3D /* XCRemoteSwiftPackageReference "SnapKit" */;
 			productName = SnapKit;
+		};
+		FBD40F78283BB2D20047CFCF /* RxCocoa */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FBD40F77283BB2D20047CFCF /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxCocoa;
+		};
+		FBD40F7A283BB2D20047CFCF /* RxSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FBD40F77283BB2D20047CFCF /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxSwift;
+		};
+		FBD40F7F283BBA120047CFCF /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FBD40F7E283BBA120047CFCF /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
