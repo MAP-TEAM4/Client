@@ -37,7 +37,7 @@ class SearchMedicineNameViewController: UIViewController, ViewProtocol {
             .distinctUntilChanged()
             .debounce(.milliseconds(500), scheduler: MainScheduler.instance)
             .subscribe(onNext: { text in
-                self.medicineNames = MedicineList.shared.filterMedicineNames(word: text)
+                self.medicineNames = MedicineList.shared.filterMedicineNames(word: text) + ["아르기린", "아스피린", "제일메토트렉세이트정4밀리그램(수출용)"]
                 self.nameTableView.reloadData()
             })
             .disposed(by: disposBag)
